@@ -1,0 +1,40 @@
+﻿@model IEnumerable<KraudFan2_0.Models.AppData.Tag>
+<script src="~/lib/jquery-tagcanvas/jquery.tagcanvas.js"></script>
+
+<div id="myCanvasContainer">
+    <canvas width="250" height="250" id="myCanvas">
+        <p>Anything in here will be replaced on browsers that support the canvas element</p>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li><a href="/Project/Index/?tag=@item.Name">@item.Name</a></li>
+            }
+        </ul>
+    </canvas>
+</div>
+
+<script type="text/javascript">
+     window.onload = function () {
+         try {
+             TagCanvas.Start('myCanvas');
+         } catch (e) {
+             // something went wrong, hide the canvas container
+             document.getElementById('myCanvasContainer').style.display = 'none';
+         }
+     };
+</script>
+
+<script type="text/javascript">
+     $(document).ready(function () {
+         if (!$('#myCanvas').tagcanvas({
+             textColour: '#black',
+             outlineThickness: 1,
+             maxSpeed: 0.03,
+             depth: 0.75
+         })) {
+             // TagCanvas failed to load
+             $('#myCanvasContainer').hide();
+         }
+         // your other jQuery stuff here...
+     });
+</script>

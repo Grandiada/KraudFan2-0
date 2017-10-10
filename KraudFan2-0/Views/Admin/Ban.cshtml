@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Ban";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Ban", "Admin", FormMethod.Post))
+{
+    <h2>Вы уверены, что хотите заблокировать аккаунт?</h2>
+    foreach (var m in ViewBag.Id)
+    {
+    <input type="hidden" value="@m" name="UserId" />
+    }
+    <button type="submit">Да</button>
+}

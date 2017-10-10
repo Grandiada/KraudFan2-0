@@ -1,0 +1,33 @@
+﻿@model KraudFan2_0.Models.AppDataViewModels.RatingViewModel
+
+
+
+@if (Model.AvailableUp)
+{
+    <a href="/Project/Rating/?projectId=@Model.ProjectId&move=RateUp"><div class="arrowup story__rating-up"></div></a>
+}
+else
+{
+    <div class="arrowup story__rating-up " style="border-bottom-color:gray;"></div>
+}
+
+<div class="story__rating-count">
+    @Model.TotalRating
+</div>
+
+@if (Model.AbailableDown)
+{
+    <a href="/Project/Rating/?projectId=@Model.ProjectId&move=RateDown"><div class="arrowdown story__rating-down"></div></a>
+}
+else
+{
+    <div class="arrowdown story__rating-down" style="border-top-color:gray;"></div>
+}
+
+
+
+
+
+
+
+

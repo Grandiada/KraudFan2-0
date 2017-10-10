@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Users</h2>
+@using (Html.BeginForm("Manage", "Admin", FormMethod.Post))
+{
+    <button class="btn-danger btn-Action" name="action" type="submit" value="ban">Заблокировать</button>
+    <button class="btn-warning btn-Action" name="action" type="submit" value="delete">Удалить</button>
+    <button  class="btn-warning btn-Action" name="action" type="submit" value="MakeVerified">Сделать Verified</button>
+<table class="table table-hover">
+    <tr>
+        <td></td>
+        <td>UserName</td>
+        <td>Roles</td>
+        <td>LastLogin</td>
+        <td>RegisterDate</td>
+        <td>Rating</td>
+        <td>Projects</td>
+        <td>PersonalInfo</td>
+        <td>status</td>
+    </tr>
+    @foreach (var m in Model)
+    {
+
+        <tr>
+                <td><input class="checkbox" id="Ids" name="Ids" type="checkbox" value="@m.Id" /></td>
+                <td>@m.UserName</td>
+                <td>
+                 
+                </td>
+                <td>@m.DateLastLogin</td>
+                <td>@m.DateRegister</td>
+                <td>@m.Rating</td>
+                <td>@m.LockoutEnabled</td>
+                <td>PersonalInfo</td>
+                <td>@m.status</td>
+        </tr>
+    }
+</table>
+}
+
+<div id="confirmDialog" title="Remove Assignment" hidden>
+    <p>Are u sure that want to make changes? </p>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+
+        $('a[id*=btn-Action]').click(function (e) {
+            debugger;
+            e.preventDefault();
+            var id = $(this).parent()[0].id;
+            $('#confirmDialog').data('id', id).dialog('open');
+        });
+
+        $("#confirmDialog").dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "Ok": function () {
+                    var ids = $(this).data("Ids");
+                    window.location.href = '/Admin/Manage/' + ids;
+                },
+                "Cancel": function (e) {
+                    $(this).dialog("close");
+                }
+            },
+        });
+    });
+</script>

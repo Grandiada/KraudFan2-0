@@ -1,0 +1,164 @@
+/*
+    Theme Name: Arsha
+    Theme URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+*/
+
+/* ==== Google font ==== */
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700');
+/* === fontawesome === */
+@import url('font-awesome.css');
+
+/* ==== overwrite bootstrap standard ==== */
+@import url('overwrite.css');
+@import url('animate.css');
+
+
+
+nav, .slider {
+	font-family:'Open Sans', Arial, sans-serif;
+	font-size:14px;
+	font-weight:300;
+	line-height:1.6em;
+	color:#000;
+	background-color:#fff;
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6em;
+    color: black;
+    background-color: #fff;
+}
+a:hover {
+	text-decoration:none;	
+}
+
+.navbar-default {
+	background-color: #fff;
+	border-radius:0;
+	border-right:0;
+	border-left:0;
+	border-top:0;	
+}
+
+
+.container-fluid > .navbar-header {
+	margin-right: 30px;
+	margin-left: 10px;
+	margin-top:20px;
+	border-radius:0;
+}
+.navbar-brand {
+  float: left;
+  height: 30px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.navbar-brand h1 {
+	float: left;
+	line-height:20px;
+	padding: 20px;
+	font-size: 30px;
+	margin-top:-23px;
+	color:#50c0e9;		
+}
+.navbar-brand h1:hover {
+  background-color:#fff;
+}
+
+.menu {
+	font-size:14px;
+	float:right;
+	text-transform:uppercase;
+	font-weight:600;	
+}
+
+.menu ul.nav-tabs li {
+	color:#000;	
+}
+
+.nav-tabs {
+  border-bottom: 0;
+}
+.nav-tabs > li {
+  float: left;
+  margin-bottom: 0;
+}
+.nav-tabs > li > a {
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-right: 20px;
+	line-height: 1.42857143;
+	border-bottom: 3px solid transparent;
+	border-radius:0;
+	color:#000;
+	border-top:0;
+	border-right:0;
+	border-left:0;	
+}
+
+.nav-tabs > li > a:hover {
+  border-color: #eee #eee #50c0e9;
+   color: #50c0e9;
+  border-radius:0;
+  background-color:#f9f9f9;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #fff;
+  cursor: default;
+  background-color: #50c0e9;
+  border: 0;
+  border-bottom-color: transparent;
+  cursor:pointer;  
+}
+
+.slides {
+	margin-top:-21px;	
+}
+
+button {
+  -webkit-appearance: none;
+  padding: 0;	
+  background: transparent;
+  border: 0;
+}
+
+button.btn-primary h2 {
+	padding:0;	
+}
+.btn {
+  display: inline-block; 
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 0 solid transparent;
+  border-radius: 0;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #50c0e9;
+  border:0;
+  margin-bottom:10px;
+}
+.btn-primary:hover {
+	background-color: #50c0e9;
+}
+

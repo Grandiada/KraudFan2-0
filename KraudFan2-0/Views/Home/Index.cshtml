@@ -1,0 +1,45 @@
+﻿<link href="~/css/responsive-slider.css" rel="stylesheet" />
+
+
+
+<link href="~/css/animate.css" rel="stylesheet" />
+
+<div class="slider">
+    <div class="container">
+        <div class="row">
+            <div class="responsive-slider" data-spy="responsive-slider" data-autoplay="true">
+                <div class="slides" data-group="slides">
+                    <ul>
+                        <li>
+                            <div class="slide-body" data-group="slide">
+                                <img src="images/2a.jpg" alt="">
+                                <div class="caption header" data-animate="slideAppearUpToDown" data-delay="500" data-length="300">
+                                    <button class="btn btn-primary"><h2> Краудфандинг в Беларуси</h2></button>
+                                    <div class="caption-sub" data-animate="slideAppearDownToUp" data-delay="1200" data-length="300"><button class="btn btn-primary"><h4><span>Предложите людям интересную идею или что-то полезное. </span></h4></button></div>
+                                    <div class="caption-sub" data-animate="slideAppearLeftToRight" data-delay="900" data-length="300"><button class="btn btn-primary"><h3>Получите деньги и измените мир прямо сейчас!</h3></button></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="slide-body" data-group="slide">
+                                <img src="images/1.jpg" alt="">
+                                <div class="caption header" data-animate="slideAppearDownToUp" data-delay="500" data-length="300">
+                                    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><h2>Есть идея?</h2></button>
+                                    <div class="caption-sub" data-animate="slideAppearUpToDown" data-delay="800" data-length="300"><button class="btn btn-primary"><h4><span>1. Добавь проект</span></h4></button></div>
+                                    <div class="caption-sub" data-animate="slideAppearRightToLeft" data-delay="1200" data-length="300"><button class="btn btn-primary"><h3>2. Соберите деньги на реализацию своей мечты.</h3></button></div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <a class="slider-control left" href="#" data-jump="prev"><i class="fa fa-angle-left fa-2x"></i></a>
+                <a class="slider-control right" href="#" data-jump="next"><i class="fa fa-angle-right fa-2x"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/responsive-slider.js"></script>
+<script src="~/js/wow.min.js"></script>
+<script>wow = new WOW({}).init();</script>

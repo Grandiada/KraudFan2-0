@@ -1,0 +1,39 @@
+﻿.arrowup {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #337ab7;
+}
+
+.arrowdown {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #5bc0de;
+}
+.story__rating-block {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    width: 68px;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.story__rating-down, .story__rating-up {
+  
+    position: relative;
+    overflow: visible;
+    padding: 3px 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.story__rating-count {
+    width:30px;
+    text-align: center;
+    font-size: 21px;
+    color: #9b9999;
+}

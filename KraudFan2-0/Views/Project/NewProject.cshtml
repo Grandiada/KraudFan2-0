@@ -1,0 +1,205 @@
+﻿@{
+    ViewData["Title"] = "NewProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Identity
+@using KraudFan2_0.Models
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject UserManager<ApplicationUser> UserManager
+
+
+<link href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<link href="~/css/DragAndDrop.css" rel="stylesheet" />
+
+<link href="~/css/ProjectIndex.css" rel="stylesheet" />
+<script src="~/js/bootstrap-markdown.js"></script>
+<link href="~/css/bootstrap-markdown.min.css" rel="stylesheet" />
+<link href="~/css/NewProject.css" rel="stylesheet" />   
+<script src="~/js/markdown.js"></script>
+<div class="container"  ng-app>
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                <p>@Localizer["Preview"]</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                <p>@Localizer["Content"]</p>
+            </div>
+            
+        </div>
+    </div>
+    <form class="form-horizontal" role="form" method="post" action="~/Project/NewProject" enctype="multipart/form-data">
+        <div class="row setup-content" id="step-1">
+                <div class="col-xs-12">
+                   
+                    <div class="col-md-8">
+                        <h3> @Localizer["Content"] </h3>
+                        <!-- Name-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="Name">@Localizer["Name"]</label>
+                            <div class="col-md-8">
+                                <input id="Name" name="Name" type="text" placeholder="Name" ng-model="Name" class="form-control input-md" maxlength="50" required>
+                            </div>
+                        </div>
+                        <!-- Description-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="Description">@Localizer["Description"]</label>
+                            <div class="col-md-8">
+                                <textarea id="Description" name="Description" placeholder="Description" ng-model="Description" rows="4" class="form-control input-md" maxlength="250" required></textarea>
+
+                            </div>
+                        </div>
+                        <!-- DateEnd -->
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="datetimepicker">@Localizer["DateEnd"]</label>
+                            <div class="col-md-8">
+                                <input type="text" name="DateEnd" ng-model="DateEnd" class="form-control input-md" id="datetimepicker">
+                            </div>
+                        </div>
+                        <!-- ImageDragAndDrop -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="imgInp">@Localizer["Image"]</label>
+                            <div class="col-md-8">
+                                <div class="file-area">
+                                    <input type="file" name="Image" id="imgInp" required />
+                                    <div class="file-dummy">
+                                        <span class="success">@Localizer["Great"]</span>
+                                        <span class="default">@Localizer["Instr"]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Tags-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="Tags">@Localizer["tags"]</label>
+                            <div class="col-md-8">
+                                <input id="Tags" name="Tags" type="text" ng-model="tags" class="form-control input-md" required>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                    <!--PreviewMini-->
+                    <div class="col-sm-4 col-md-4" style="padding-top:15px">
+                        <h3> @Localizer["Preview"]</h3>
+                        <div class="post">
+                            <div class="post-img-content">
+                                <img src="~/images/previewImage.png"  width="460" height="250" class="img-responsive" id="blah"/>
+                                <span class="post-title">
+                                    <b>{{Name}}</b><br />
+                                    <b>{{tags}}</b>
+                                </span>
+                            </div>
+                       
+                            <div class="content">
+                                <div class="author">
+                                    By <b>@UserManager.GetUserName(User)</b> |
+                                    <time datetime="item.DateCreate">@DateTime.Now.Month/@DateTime.Now.Day/@DateTime.Now.Year</time>
+                                </div>
+                                <div>
+                                    {{Description}}
+                                </div>
+                                <div>
+                                    <br />
+                                    <a class="btn btn-success btn-sm">@Localizer["ReadMore"]</a>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+               
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">@Localizer["Next"]</button>
+                </div>
+            </div>
+
+        <div class="row setup-content" id="step-2">
+            <div class="col-xs-12">
+                <div class="col-md-12">
+                    <h3> @Localizer["Content"]</h3>
+                    <!-- Content -->
+                    <div class="form-group">
+                        <label class="col-md-1 control-label" for="Content">@Localizer["PostContent"]</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" style="min-height:150px;height:auto;" id="Content" data-provide="markdown" name="Content" required></textarea>
+                        </div>
+                    </div>
+                    <!-- MinDonate -->
+                    <div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="MinDonate" style="margin-top:-15px;">@Localizer["MinDonate"]</label>
+                            <div class="col-md-4">
+                                <input type="number" name="MinDonate" id="MinDonate" ng-model="minDonat" min="0" step="0.1" required />
+                                $
+                            </div>
+                        </div>
+                        <!-- MaxDonate -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="MaxDonate" style="margin-top:-15px;">@Localizer["MaxDonate"]</label>
+                            <div class="col-md-4">
+                                <input type="number" name="MaxDonate" id="MaxDonate" min="{{minDonat}}" step="0.1" required /> $
+                            </div>
+                        </div>
+                    </div>
+                  <!-- new shit -->
+                    <h3>@Localizer["FinTarg"]</h3>
+                    <div class="form-group container">
+                        <div class="row clearfix">
+                            <div class="col-md-10 table-responsive">
+                                <table class="table table-bordered table-hover" id="tab_logic">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                              @Localizer["NeededSum"]
+                                            </th>
+                                            <th class="text-center">
+                                              @Localizer["TargDesc"]  
+                                            </th>
+                                            <th class="text-center">
+                                              @Localizer["DateEnd"]
+                                            </th>
+                                            <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr0' data-id="0" class="hidden">
+
+                                            <td data-name="TotalSum" class="form-group">
+                                                <input id="TotalSum" type="number" name="Targets[0].TotalSum" >
+                                            </td>
+                                            <td data-name="Desctiprion" class="form-group">
+                                                <textarea class="form-control" id="Desctiprion" name="Targets[0].Desctiprion" ></textarea>
+                                            </td>
+                                            <td data-name="DateEnd" class="form-group">
+                                                <input type="date" id="DateEndTarget" max="" class="DateEndTarget" name="Targets[0].DateEnd" ><hr>
+                                            </td>
+                                            <td data-name="del">
+                                                <button nam"del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <a id="add_row" class="btn btn-default pull-right">@Localizer["AddRow"]</a>
+                    </div>
+
+
+                    <!-- ended -->
+                    <button class="btn btn-success btn-lg pull-right" type="submit">@Localizer["Finish"]!</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="~/js/NewProject.js"></script>
+<script type="text/javascript">
+
+
+</script>

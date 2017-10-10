@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewData["Title"] = "NewProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>NewProject</h2>
+
+<form class="form-horizontal" method="post" action="~/Project/NewProject">
+
+    <!-- Name-->
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="Name">Name</label>
+        <div class="col-md-4">
+            <input id="Name" name="Name" type="text" placeholder="Name" class="form-control input-md" maxlength="50" required>
+        </div>
+    </div>
+    <!-- Description-->
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="Description">Description</label>
+        <div class="col-md-4">
+            <input id="Description" name="Description" type="text" placeholder="Description" class="form-control input-md" maxlength="250" required>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="Content">Description</label>
+        <div class="col-md-10">
+            <textarea class="form-control" style="min-height:150px;height:auto;" id="Content" name="Content" required></textarea>
+        </div>
+    </div>
+    <!-- DateEnd -->
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="DateEnd">Date End</label>
+        <div class="col-md-4">
+            <input type="date" name="DateEnd" id="DateEnd" min="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day" required />
+        </div>
+    </div>
+    <!-- MinDonate -->
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="MinDonate">MinDonate</label>
+        <div class="col-md-4">
+            <input type="number" name="MinDonate" id="MinDonate" step="0.1" required />
+        </div>
+    </div>
+    <!-- MaxDonate -->
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="MaxDonate">MaxDonate</label>
+        <div class="col-md-4">
+            <input type="number" name="MaxDonate" id="MaxDonate" step="0.1" required />
+        </div>
+    </div>
+
+
+    <div class="row">
+        <hr />
+        <div id="FinancialTarget">
+            <div class="form-group">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Financial target
+                <br>Total Sum<br>
+                <input id="TotalSum" type="number" name="Targets[0].TotalSum" required>
+                <br>Description<br>
+                <textarea class="form-control" id="Desctiprion" name="Targets[0].Desctiprion" required></textarea>
+                Expiration Time
+                <br>
+                <input type="date" id="DateEnd" name="Targets[0].DateEnd" required><hr>
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <button class="btn btn-success" type="submit">Создать</button>
+            <button class="btn btn-warning" type="reset">Очистить</button>
+            <a href="#AddTarget" class="btn btn-success" id="AddTarget">Add Financial Target</a>
+        </div>
+    </div>
+    <a name="AddTarget"></a>
+
+
+
+    </fieldset>
+</form>
+<!--
+<form class="form-horizontal" method="post" action="~/FullTextSearch/Search">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-1 control-label" for="querry">Description</label>
+            <div class="col-md-10">
+                <textarea class="form-control" style="min-height:150px;height:auto;" id="querry" name="querry"></textarea>
+            </div>
+        </div>
+        <button class="btn-success" type="submit">Создать</button>
+</fieldset>
+</form>
+    -->
+<script type='text/javascript'>
+    var i = 1;
+    $(function () {
+        $("#AddTarget").click(function (e) {
+            var div = document.createElement('div');
+
+            div.className = 'form-group';
+
+            div.innerHTML = '<button type="button" class="close" aria-label="Close">\
+            <span aria-hidden="true" >&times;</span>\
+            </button>\
+            Financial target\
+            <br> Total Sum <br>\
+            <input id="TotalSum" type="number" name="Targets['+ i + '].TotalSum" required>\
+            <br> Description <br>\
+            <textarea class="form-control" id="Desctiprion" name="Targets['+ i + '].Desctiprion" required></textarea>\
+            Expiration Time <br>\
+            <input type="date" id="DateEnd" name="Targets['+ i + '].DateEnd" required><hr>';
+            i++;
+            document.getElementById('FinancialTarget').appendChild(div);
+        });
+    });
+
+    $(function() {
+        $('#FinancialTarget').on('click', '.close', function (e) {
+            $(this).parent(this).remove();
+        });
+
+    });
+
+</script>

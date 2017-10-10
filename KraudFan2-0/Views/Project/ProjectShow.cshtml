@@ -1,0 +1,135 @@
+﻿@model KraudFan2_0.Models.AppData.Project
+@{
+    ViewData["Title"] = "Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Identity
+@using KraudFan2_0.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<link href="~/css/ProjectShow.css" rel="stylesheet" />
+<script src="~/lib/jquery-tagcanvas/jquery.tagcanvas.js"></script>
+<link href="~/css/Arrows.css" rel="stylesheet" />
+<div class="container">
+    <section id="wrapper">
+
+        <div class="row">
+       
+            <div class="col-md-8">
+                <div class="masthead  well-sm">
+                    <h1>
+                        <span class="light text-primary">@Model.Name </span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9 ">
+
+                <div class="article">
+                    <div class="row">
+                        <div class="col-md-1 story__rating-block">
+
+                            @await Component.InvokeAsync("Rating", new { id = Model.Id, currentUser =UserManager.GetUserId(User) })
+
+                        </div>
+
+                       <!--asdasdasdsasda-->        
+                        <div class="col-md-auto">
+                            <h3>@Model.Description</h3>
+                        </div>
+                    
+                    </div>
+                    <ul class="list-unstyled list-inline">
+                        <li><i class="fa fa-calendar"></i> @Model.DateCreate</li>
+                        <li><i class="fa fa-user"></i>@Model.User.UserName</li>
+                        <li><i class="fa fa-comments"></i> <a href="#comments">@Model.Comments.Count comments</a></li>
+                        @foreach (var item in ViewBag.tags)
+                        {
+                        <li><i class="fa fa-tag"></i>@item.Name</li>
+                        }
+                    </ul>
+                    <div class="article-content well">
+                       
+                        @ViewBag.Content
+                    </div>
+                  
+
+                </div>
+            </div>
+
+            <div class="col-md-3">
+
+                <div>
+
+                    <h3>Финансовые Цели:</h3>
+                    @{
+                        decimal curent = 0;
+                        decimal total = 0;
+                        foreach (var item in Model.Targets)
+                        {
+                            curent +=item.CurentSum;
+                            total += item.TotalSum;
+                            <div class="row">
+                                <div class="well media media-body">
+                                    <h4 class="media-heading">Необходимая сумма @item.TotalSum $</h4>
+                                    <p>
+                                        @item.Desctiprion
+                                    </p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                            60%
+                                        </div>
+                                    </div>
+                                    <h4 class="media-heading">Собрано @item.CurentSum $</h4>
+                                    <h5 class="media-heading">Дата окончания @item.DateEnd.ToString("dd/MM/yyyy")</h5>
+                                </div>
+                            </div>
+                            <br />
+                        }
+                        <h3 class="media-heading">Итого:</h3>
+                        <h5 class="media-heading">Всего надо собрать @total $</h5>
+                        <h5 class="media-heading">Собрано @curent $</h5>
+                    }
+                    <div class="headline"><h3>Tags</h3></div>
+
+                    @await Component.InvokeAsync("TagCanvas")
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<hr />
+ <a name="comments"></a>   
+
+@await Component.InvokeAsync("Comments", new { id = Model.Id })
+<!--CommentAdding-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="widget-area no-padding blank">
+                <div class="status-upload">
+                    <form method="post" action="~/Project/CommentAdd/">
+                        <textarea placeholder="What are you doing right now?" name="text" id="text"></textarea>
+                        <input type="hidden" value="@Model.Id" name="id" />
+                        <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Share</button>
+                    </form>
+                </div><!-- Status Upload  -->
+            </div><!-- Widget Area -->
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("p img").addClass("img-responsive");
+
+        $("[data-toggle=tooltip]").tooltip();
+});
+    </script>
